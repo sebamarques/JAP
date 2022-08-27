@@ -1,6 +1,6 @@
-let alerta = document.getElementById("alerta")
-let mail = document.getElementById("mail")
-let pass = document.getElementById("pass")
+let alerta = document.getElementById("alerta") 
+let mail = document.getElementById("mail") 
+let pass = document.getElementById("pass") 
 let agregado = ""
 let email = "@"
 let uno = "m"
@@ -17,6 +17,7 @@ function ingresar(){ //funcion de inicio de sesion
     for(let i = 0;i<usuario.length;i++){
         if((usuario[i]== email)&&(usuario[usuario.length-1] == uno) && (usuario[usuario.length-2]==dos)&&(usuario[usuario.length-3]==tres)&&(usuario[usuario.length-4]==cuatro)){
             entrar()
+            localStorage.setItem("usuario",usuario);
         }
         if(usuario[i]!=email){
             agregado =`
@@ -24,20 +25,20 @@ function ingresar(){ //funcion de inicio de sesion
             `
             mail.innerHTML = agregado
         }
-        console
-        if(contrasena.length >0){
-            pass.innerHTML = ""
-        }
-        if(usuario[i]== email){
+        
+        if(usuario[i] == email){
             mail.innerHTML=""
         }
         if((usuario[usuario.length-1] != uno) && (usuario[usuario.length-2]!=dos)&&(usuario[usuario.length-3]!=tres)&&(usuario[usuario.length-4]!=cuatro)){
             agregado =`
             <p>El mail ingresado no es valido, falta el ".com"</p>
-
+            
             `
             mail.innerHTML = agregado
         }
+        
+            pass.innerHTML = ""
+        
     }
     
     

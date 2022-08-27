@@ -7,7 +7,7 @@ function mostrarproductos(){
     for(let i = 0;i<guardar.products.length;i++){
         //comparamos i con la longitud de productos (que es un array) que esta dentro de 
         // guardar(que es otro array)
-        arreglo = guardar.products[i] // creamos otra variable para mas comodidad
+        arreglo = guardar.products[i] 
         console.log(arreglo)
         mostrar += `
         <div id = "carros">

@@ -11,5 +11,15 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
-    
+    mostrarusuario()
 });
+function mostrarusuario(){
+    let mostrar = document.getElementById("mostrarusuario")
+    agregar = ``
+    let mostrarusuario = localStorage.getItem("usuario")
+    agregar=`
+        <a class ="nav-link">`+mostrarusuario+`<a>
+    `
+    mostrar.innerHTML = agregar
+
+}
