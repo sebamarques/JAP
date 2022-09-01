@@ -31,13 +31,50 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <li class="nav-item" id="mostrarusuario">
+            
+            </li>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-    <h2 class = "texto">Productos</h2>
-    <p class="texto">Verás aqui todos los productos de la categoria <span>Autos</span> </p>
+  <h2 class = "texto">Productos</h2>
+  <p class="texto" id="cat">Verás aqui todos los productos de la categoria  </p>
+  <div class="container">
+    <div class="row">
+      <div class="col text-end">
+        <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+          <input type="radio" class="btn-check" name="options" id="precioascen">
+          <label class="btn btn-light" for="precioascen">$</label>
+          <input type="radio" class="btn-check" name="options" id="preciodescen">
+          <label class="btn btn-light" for="preciodescen">$</label>
+          <input type="radio" class="btn-check" name="options" id="sortRel" checked>
+          <label class="btn btn-light" for="sortRel"><i class="fas fa-sort-amount-down mr-1"></i></label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+        <div class="row container p-0 m-0">
+          <div class="col">
+            <p class="font-weight-normal text-end my-2">Precio.</p>
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="min." id="rangopreciomin">
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="máx." id="rangopreciomax">
+          </div>
+          <div class="col-3 p-0">
+            <div class="btn-group" role="group">
+              <button class="btn btn-light btn-block" id="filtrarprecio">Filtrar</button>
+              <button class="btn btn-link btn-sm" id="limpiar">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <div id="algo"> <!-- esto lo agregue yo, necesito ponerle los datos de los productos -->
     
   </div>
