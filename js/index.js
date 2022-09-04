@@ -15,15 +15,4 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
         
     });
-    mostrarusuario()
 });
-function mostrarusuario(){
-    let mostrar = document.getElementById("mostrarusuario")
-    agregar = ``
-    let mostrarusuario = localStorage.getItem("usuario")
-    agregar=`
-        <a class ="nav-link">`+mostrarusuario+`<a>
-    `
-    mostrar.innerHTML = agregar
-
-}

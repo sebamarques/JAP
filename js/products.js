@@ -6,8 +6,13 @@ const descendiente_precio= "abajo";
 const cantidad_vendidos = "vendidos";
 let currentSortCriteria = undefined;
 let guardar = []
-let categ=[]
-let lista = []
+let categori = []
+let id=[]
+let variable = 0;
+let valor = [];
+let nombre =[]
+let catnam = []
+let catn = document.getElementById("catn")
 
 function sortCategories(criteria, array){
     array = guardar.products
@@ -17,51 +22,48 @@ function sortCategories(criteria, array){
         result = array.sort(function(a, b) {
             aprecio = parseInt(a.cost)
             bprecio = parseInt(b.cost)
-            
-            console.log(aprecio)
-            console.log(bprecio)
-            console.log("algo")
-            if ( aprecio < bprecio ){ return -1; }
-            if ( aprecio > bprecio ){ return 1; }
-            return 0;
+            return aprecio - bprecio
         });
     }else if (criteria === descendiente_precio){
         result = array.sort(function(a, b) 
         {   aprecio = parseInt(a.cost)
             bprecio = parseInt(b.cost)
-            
-            console.log(aprecio)
-            console.log(bprecio)
-            console.log("algo")
-            if ( aprecio > bprecio ){ return -1; }
-            if ( aprecio < bprecio ){ return 1; }
-            return 0;
+           return bprecio - aprecio
         });
     }else if (criteria === cantidad_vendidos){
         result = array.sort(function(a, b) {
             let aCount = parseInt(a.soldCount);
             let bCount = parseInt(b.soldCount);
-            console.log(aCount)
-            console.log(bCount)
-            console.log("algo")
-            if ( aCount > bCount ){ return -1; }
-            if ( aCount < bCount ){ return 1; }
-            return 0;
+            return bCount - aCount
         });
     }
    
     mostrarproductos()
     return result;
 }
-
+function mostrarproductscategory(){
+    let local = localStorage.getItem("catID")
+    
+    for(let i = 0;i<categori.length;i++){
+        if(local == categori[i].id){ 
+        nombre.push(categori[i].name)
+        id.push(categori[i].id)
+        valor.push(i)
+        catnam.push(categori[i].name)
+        guardar[i]
+        }
+    }
+}
 function mostrarproductos(){
-    
-    
+    console.log(guardar)
+    sads = ""
     let mostrar = ""
-    let algo = guardar.catID
-    let loca = localStorage.getItem("catID")
-    console.log(algo)
-    if(algo == loca){
+    sads = `
+    <span>${nombre}<span>
+    `
+    catn.innerHTML = sads
+    catname = guardar.catName
+    if(catname == catnam){
     for(let i = 0; i < guardar.products.length;i++){
         //comparamos i con la longitud de productos (que es un array) que esta dentro de 
         // guardar(que es otro array)        
@@ -85,11 +87,9 @@ function mostrarproductos(){
         }
     }
     contenedor.innerHTML = mostrar
-    }
-    else{
-        alert("estamos en desarollo vuelva pronto") 
-    }
+        }
 }
+
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(Autos).then(function(resultObj){
@@ -97,8 +97,16 @@ document.addEventListener("DOMContentLoaded", function(e){
             guardar = resultObj.data
             mostrarproductos()
         }
-        
+    getJSONData(CATEGORIES_URL).then(function(resultObj){
+        if(resultObj.status ==="ok"){
+            categori = resultObj.data
+            mostrarproductscategory()
+            mostrarproductos()
+        }
+    })
     });
+        
+    
     document.getElementById("precioascen").addEventListener("click",function(){
         sortCategories(ascendente_precio)
     });
@@ -112,7 +120,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("limpiar").addEventListener("click",function(){
         document.getElementById("rangopreciomin").value = ""
         document.getElementById("rangopreciomax").value = ""
-        
+        preciomax = undefined;
+        preciomin= undefined;
         mostrarproductos()
         
     });
@@ -139,5 +148,4 @@ document.addEventListener("DOMContentLoaded", function(e){
         
         mostrarproductos();
     });
-    
 });
