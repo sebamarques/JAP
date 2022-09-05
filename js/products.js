@@ -6,12 +6,7 @@ const descendiente_precio= "abajo";
 const cantidad_vendidos = "vendidos";
 let currentSortCriteria = undefined;
 let guardar = []
-let categori = []
-let id=[]
-let variable = 0;
-let valor = [];
-let nombre =[]
-let catnam = []
+
 let catn = document.getElementById("catn")
 
 function sortCategories(criteria, array){
@@ -41,29 +36,16 @@ function sortCategories(criteria, array){
     mostrarproductos()
     return result;
 }
-function mostrarproductscategory(){
-    let local = localStorage.getItem("catID")
-    
-    for(let i = 0;i<categori.length;i++){
-        if(local == categori[i].id){ 
-        nombre.push(categori[i].name)
-        id.push(categori[i].id)
-        valor.push(i)
-        catnam.push(categori[i].name)
-        guardar[i]
-        }
-    }
-}
 function mostrarproductos(){
-    console.log(guardar)
-    sads = ""
-    let mostrar = ""
-    sads = `
-    <span>${nombre}<span>
+   
+   let catname = guardar.catName
+   let mostrar = ""
+    let prod = ""
+    prod = `
+    <span>${catname}<span>
     `
-    catn.innerHTML = sads
-    catname = guardar.catName
-    if(catname == catnam){
+    catn.innerHTML = prod
+    
     for(let i = 0; i < guardar.products.length;i++){
         //comparamos i con la longitud de productos (que es un array) que esta dentro de 
         // guardar(que es otro array)        
@@ -88,22 +70,15 @@ function mostrarproductos(){
     }
     contenedor.innerHTML = mostrar
         }
-}
 
 
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(Autos).then(function(resultObj){
+    let id= localStorage.getItem("catID")
+    getJSONData(productos+id+".json").then(function(resultObj){
         if (resultObj.status === "ok"){
             guardar = resultObj.data
             mostrarproductos()
         }
-    getJSONData(CATEGORIES_URL).then(function(resultObj){
-        if(resultObj.status ==="ok"){
-            categori = resultObj.data
-            mostrarproductscategory()
-            mostrarproductos()
-        }
-    })
     });
         
     
