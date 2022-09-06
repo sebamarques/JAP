@@ -6,7 +6,7 @@ const descendiente_precio= "abajo";
 const cantidad_vendidos = "vendidos";
 let currentSortCriteria = undefined;
 let guardar = []
-
+let id_producto = []
 let catn = document.getElementById("catn")
 
 function sortCategories(criteria, array){
@@ -36,6 +36,10 @@ function sortCategories(criteria, array){
     mostrarproductos()
     return result;
 }
+function ponerid(id){
+    localStorage.setItem("id",id)
+    window.location = "product-info.html"
+}
 function mostrarproductos(){
    
    let catname = guardar.catName
@@ -50,27 +54,28 @@ function mostrarproductos(){
         //comparamos i con la longitud de productos (que es un array) que esta dentro de 
         // guardar(que es otro array)        
         arreglo = guardar.products[i] 
+        id_producto.push(guardar.products[i].id)
         if(((preciomin == undefined) || (preciomin != undefined && arreglo.cost >= preciomin))
         &&((preciomax == undefined) || (preciomax != undefined && arreglo.cost <= preciomax)))
         { 
         mostrar += `
+        <div onclick = "ponerid(${arreglo.id})">
         <div id = "carros">
             <img id="cars"src=${arreglo.image} width ="180px">
             <p style="text-align:end;">${arreglo.soldCount} vendidos</p>
             <div id="alladoimagen">
             <p>${arreglo.name} - ${arreglo.currency}${arreglo.cost}</p>
             </div>
-            
             <p style="text-align:center"">${arreglo.description}</p>
-            
         </div>
+       </div>
         `
-    // arriba lo que hacemos es agregar contenido
-        }
+        contenedor.innerHTML = mostrar
+        
+        // arriba lo que hacemos es agregar contenido
+}
     }
-    contenedor.innerHTML = mostrar
         }
-
 
 document.addEventListener("DOMContentLoaded", function(e){
     let id= localStorage.getItem("catID")
