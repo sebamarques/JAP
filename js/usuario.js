@@ -9,7 +9,10 @@ document.addEventListener("DOMContentLoaded",function(){
         let mostrarusuario = localStorage.getItem("usuario")
         if(mostrarusuario==null){
             window.location = "index.html"
-            alert("ingresar nuevamente usuario")
+            
+        }
+        if(mostrarusuario != null){
+            window.location = "frontal.html"
         }
         agregar=`
         <a class ="nav-link">`+mostrarusuario+`<a>`
