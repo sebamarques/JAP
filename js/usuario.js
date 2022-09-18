@@ -11,9 +11,6 @@ document.addEventListener("DOMContentLoaded",function(){
             window.location = "index.html"
             
         }
-        if(mostrarusuario != null){
-            window.location = "frontal.html"
-        }
         agregar=`
         <a class ="nav-link">`+mostrarusuario+`<a>`
         

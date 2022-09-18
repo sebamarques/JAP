@@ -26,20 +26,77 @@ function mostrarproducto(){
         }
         link.innerHTML += product
     }
-    function mostrarcomentario(){
+
+function mostrarcomentario(){
         let mostrar = `<p>Comentarios</p>`
         for(let i = 0;i<comentario.length;i++){
             if(comentario[i].score == 1){
-                
-            }
+                algo =`
+        
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        
+        `}
+        if(comentario[i].score == 2){
+            algo =`
+    
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+    
+        `
+        }
+        if(comentario[i].score == 3){
+            algo =`
+    
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+    
+        `
+        }
+        if(comentario[i].score == 4){
+            algo =`
+    
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+    
+        `
+        }
+        if(comentario[i].score == 5){
+            algo =`
+    
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
             
+        `
+    }
+           
             mostrar += `
+            
             <div id= "comentario">
-            <p>${comentario[i].user} ${comentario[i].dateTime} ${comentario[i].score}</p>
+            <p id = "estrella">${comentario[i].user} ${comentario[i].dateTime}${algo}<p> 
             <p>${comentario[i].description}</p>
             </div>
             `
-    }   mostrar +=`
+   
+            comment.innerHTML = mostrar
+    }   
+
+    mostrar +=`
         <h3>Comentar</h3>
         <h5>Tu opinion:</h5>
         <input></input>
@@ -65,6 +122,7 @@ document.addEventListener("DOMContentLoaded",function(){
         if(resultObj.status == "ok"){
             comentario = resultObj.data
             mostrarcomentario()
+            
         }
     })
 })
