@@ -241,3 +241,8 @@ span{
   margin-left: 100px;
   margin-right: 100px;
 }
+.borde{
+  border: 1px solid black;
+  margin-left: 250px;
+  margin-right: 250px;
+}

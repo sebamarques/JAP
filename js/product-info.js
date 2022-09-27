@@ -1,8 +1,10 @@
 let link = document.getElementById("product")
 let comment = document.getElementById("comment") 
+let relacion = document.getElementById("relacion")
 let id = localStorage.getItem("id")
 function mostrarproducto(){
     product = ``
+    rel= ``
         if(producto.id==id){
             product += `
             <div>
@@ -23,8 +25,21 @@ function mostrarproducto(){
                 product += `
                 <img src = "${producto.images[i]}" heigth =" 250px"width="250px">`
             }
-        }
+            rel += `<p>Productos relacionados</p>`
+            for(let i = 0; i<producto.relatedProducts.length;i++){
+            
+                rel += `
+            <div class = "borde">
+                <img src ="${producto.relatedProducts[i].image}" heigth ="250px" width="250px""> 
+                <p>${producto.relatedProducts[i].name}</p>
+                </div>
+            `
+            
+            }
+    }
+        relacion.innerHTML += rel
         link.innerHTML += product
+        
     }
 
 function mostrarcomentario(){
@@ -109,20 +124,22 @@ function mostrarcomentario(){
     
 
 }
-
 document.addEventListener("DOMContentLoaded",function(){
     
     getJSONData(PRODUCT_INFO_URL+id+".json").then(function(resultObj){
         if (resultObj.status === "ok"){
             producto = resultObj.data
             mostrarproducto()
+            console.log(producto)
+            
         }
     })
     getJSONData(PRODUCT_INFO_COMMENTS_URL+id+".json").then(function(resultObj){
         if(resultObj.status == "ok"){
             comentario = resultObj.data
             mostrarcomentario()
-            
+            console.log(comentario)
         }
     })
+    
 })
